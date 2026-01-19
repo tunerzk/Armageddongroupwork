@@ -17,8 +17,8 @@ import logging
 from flask import Flask, request
 from watchtower import CloudWatchLogHandler
 
-REGION = os.environ.get("AWS_REGION", "us-east-1")
-LOG_GROUP = "/aws/ec2/lab-rds-app"
+REGION = os.environ.get("AWS_REGION", "us-west-2")
+LOG_GROUP = "/aws/rds/instance/lab-mysql/error"
 METRIC_NAMESPACE = "Lab/RDSApp"
 
 ssm = boto3.client("ssm", region_name=REGION)
@@ -148,7 +148,7 @@ ExecStartPre=/usr/bin/sleep 20
 ExecStart=/usr/bin/python3 /opt/rdsapp/app.py
 Restart=always
 RestartSec=10s
-Environment=AWS_REGION=us-east-1
+Environment=AWS_REGION=us-west-2
 
 [Install]
 WantedBy=multi-user.target
