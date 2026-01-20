@@ -11,26 +11,27 @@ Screenshot of: RDS SG inbound rule using source = sg-ec2-lab EC2 role attached /
 
 
 
-Short answers: A) Why is DB inbound source restricted to the EC2 security group?
+Short answers: A) Why is DB inbound source restricted to the EC2 security group? The DB is restricted to the EC2 in order to provide direct secure access into the database.
 
 
 B) What port does MySQL use? Port 3306
 
 
 
-C) Why is Secrets Manager better than storing creds in code/user-data?
+C) Why is Secrets Manager better than storing creds in code/user-data? The secrets manager is better because it compartmentalizes the info which is more secured. If all data was store in one location, than a breach
+into that location would cause a wider spand "blast radius" of damage.
 
 
 Evidence for Audits / Labs (Recommended Output)
 
 aws ec2 describe-security-groups --group-ids sg-0123456789abcdef0 > sg.json aws rds describe-db-instances --db-instance-identifier mydb01 > rds.json aws secretsmanager describe-secret --secret-id my-db-secret > secret.json aws ec2 describe-instances --instance-ids i-0123456789abcdef0 > instance.json aws iam list-attached-role-policies --role-name MyEC2Role > role-policies.json
 
-Then Answer: Why each rule exists?
-What would break if removed?
-Why broader access is forbidden?
-Why this role exists?
-Why it can read this secret?
-Why it cannot read others?
+Then Answer: Why each rule exists? Each rule exist to minumize access 
+What would break if removed? If removed that would break access to the database
+Why broader access is forbidden? Broader access will give less security control over information on the database
+Why this role exists? The role gives access to the correct services needed for the Infastructure to work properly
+Why it can read this secret? It can read the secrete because it was placed into the policy giving the apps access to the info within the secret
+Why it cannot read others? It can not read others because the policy for access has not be given to the app or ec2
 
 
 
