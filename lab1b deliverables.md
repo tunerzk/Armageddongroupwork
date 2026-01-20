@@ -55,11 +55,31 @@ Create a CloudWatch Alarm that triggers when failures exceed a threshold
 
 Simulate a DB outage or credential failure
 <img width="1799" height="433" alt="Screenshot 2026-01-19 152808" src="https://github.com/user-attachments/assets/f15b733d-a176-4f8b-b600-9c8ea8f5dc08" />
+<img width="1772" height="488" alt="Screenshot 2026-01-19 151240" src="https://github.com/user-attachments/assets/ce4fadb4-131f-4e85-bf46-cd4f42aa6bb3" />
+
+
 
 Recover the system using saved parameters/secrets without redeploying EC2
 <img width="1839" height="681" alt="Screenshot 2026-01-16 210951" src="https://github.com/user-attachments/assets/7b321dcd-5768-43a6-9fc6-565f23c3092c" />
 
 
+Incident-Response Focus (What This Lab Teaches) During recovery, you must: Identify failure source via logs Retrieve correct values from: Parameter Store Secrets Manager Restore service using configuration — not guesswork
+This mirrors real on-call workflows.
+
+Common Failure Modes (And Why They Matter) | Failure | Real-World Meaning | | -------------------------- | ------------------------- | | Alarm never fires | Poor observability | | Logs lack detail | Weak incident diagnostics | | EC2 can’t read parameters | IAM misdesign | | Recovery requires redeploy | Fragile architecture |
+
+What Completing Lab 1b Proves If you complete this lab, you can confidently say: “I can operate, monitor, and recover AWS workloads using proper secret management and observability.”
+
+That is mid-level engineer capability, not entry-level.
+
+Reflection Questions: Answer all of these A) Why might Parameter Store still exist alongside Secrets Manager? 
+
+
+B) What breaks first during secret rotation? C) Why should alarms be based on symptoms instead of causes?
+
+
+
+D) How does this lab reduce mean time to recovery (MTTR)? E) What would you automate next?
 
 
 
@@ -71,7 +91,6 @@ Recover the system using saved parameters/secrets without redeploying EC2
 
 
 
-<img width="1772" height="488" alt="Screenshot 2026-01-19 151240" src="https://github.com/user-attachments/assets/ce4fadb4-131f-4e85-bf46-cd4f42aa6bb3" />
 
 
 
