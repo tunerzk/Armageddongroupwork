@@ -12,7 +12,7 @@ import boto3
 import pymysql
 from flask import Flask, request
 
-REGION = os.environ.get("AWS_REGION", "us-east-1")
+REGION = os.environ.get("AWS_REGION", "us-west-2")
 SECRET_ID = os.environ.get("SECRET_ID", "lab/rds/mysql")
 
 secrets = boto3.client("secretsmanager", region_name=REGION)
