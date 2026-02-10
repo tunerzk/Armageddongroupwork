@@ -31,6 +31,8 @@ Alarm created (ALB 5xx)
 
 aws cloudwatch describe-alarms
 --alarm-name-prefix chewbacca-alb-5xx
+<img width="1821" height="509" alt="Screenshot 2026-01-19 152203" src="https://github.com/user-attachments/assets/4d00545a-155b-46d8-a0f7-1fc3ab6adcbb" />
+
 
 
 
