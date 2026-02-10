@@ -5,6 +5,8 @@ ALB exists and is active
 aws elbv2 describe-load-balancers
 --names chewbacca-alb01
 --query "LoadBalancers[0].State.Code"
+<img width="1563" height="623" alt="Screenshot 2026-01-26 220546" src="https://github.com/user-attachments/assets/4749973a-151c-41a5-9e15-fff34adb1393" />
+
 
 
 
@@ -13,6 +15,7 @@ HTTPS listener exists on 443
 aws elbv2 describe-listeners
 --load-balancer-arn <ALB_ARN>
 --query "Listeners[].Port"
+
 
 Target is healthy
 
@@ -28,6 +31,7 @@ Alarm created (ALB 5xx)
 
 aws cloudwatch describe-alarms
 --alarm-name-prefix chewbacca-alb-5xx
+
 
 
 Dashboard exists
