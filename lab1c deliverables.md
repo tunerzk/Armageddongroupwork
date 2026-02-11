@@ -15,12 +15,16 @@ HTTPS listener exists on 443
 aws elbv2 describe-listeners
 --load-balancer-arn <ALB_ARN>
 --query "Listeners[].Port"
+<img width="1342" height="227" alt="image" src="https://github.com/user-attachments/assets/a819d56d-e1c6-454a-8434-a668837571c7" />
+
 
 
 Target is healthy
 
 aws elbv2 describe-target-health
 --target-group-arn <TG_ARN>
+<img width="1782" height="438" alt="image" src="https://github.com/user-attachments/assets/0d8713bd-7a98-4b97-83c2-3ec53ace5efa" />
+
 
 WAF attached
 
@@ -37,6 +41,8 @@ aws cloudwatch describe-alarms
 
 
 Dashboard exists
+<img width="726" height="311" alt="image" src="https://github.com/user-attachments/assets/43fb3d9e-9886-4180-9371-47dc6ffc6ed1" />
+
 
 aws cloudwatch list-dashboards
 --dashboard-name-prefix chewbacca
