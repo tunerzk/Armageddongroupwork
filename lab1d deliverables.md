@@ -3,6 +3,8 @@ Student verification (CLI) — DNS + Logs
 Verify apex record exists aws route53 list-resource-record-sets
 --hosted-zone-id <ZONE_ID>
 --query "ResourceRecordSets[?Name=='chewbacca-growl.com.']"
+<img width="1348" height="428" alt="image" src="https://github.com/user-attachments/assets/611284d9-650f-43bd-ba33-d627b85eae95" />
+
 
 Verify ALB logging is enabled aws elbv2 describe-load-balancers
 --names chewbacca-alb01
@@ -13,6 +15,8 @@ Verify ALB logging is enabled aws elbv2 describe-load-balancers
 
 Then: aws elbv2 describe-load-balancer-attributes
 --load-balancer-arn <ALB_ARN>
+<img width="1231" height="360" alt="image" src="https://github.com/user-attachments/assets/a98173cd-341f-4ff4-91d8-a4ea7d9edc89" />
+
 
 
 Expected attributes include: access_logs.s3.enabled = true access_logs.s3.bucket = your bucket access_logs.s3.prefix = your prefix
@@ -24,5 +28,7 @@ Generate some traffic curl -I https://chewbacca-growl.com curl -I https://app.ch
 
 
 Verify logs arrived in S3 (may take a few minutes) aws s3 ls s3://<BUCKET_NAME>//AWSLogs/<ACCOUNT_ID>/elasticloadbalancing/ --recursive | head
+<img width="1447" height="257" alt="image" src="https://github.com/user-attachments/assets/c389695d-f9d6-4329-854d-aef2f7de4454" />
+
 
 Why this matters to YOU (career-critical point) This is incident response fuel: Access logs tell you: client IPs paths response codes target behavior latency
