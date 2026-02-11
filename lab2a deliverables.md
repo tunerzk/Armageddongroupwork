@@ -81,6 +81,8 @@ Verification CLI (students must prove all 3 requirements)
 1) “VPC is only reachable via CloudFront”
 A) Direct ALB access should fail (403)
   curl -I https://<ALB_DNS_NAME>
+  <img width="1436" height="115" alt="image" src="https://github.com/user-attachments/assets/7a1ccdd9-1087-47a9-a88e-585035dfdb87" />
+
 
 Expected: 403 (blocked by missing header)
 
