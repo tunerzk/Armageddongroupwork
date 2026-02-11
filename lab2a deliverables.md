@@ -89,6 +89,12 @@ Expected: 403 (blocked by missing header)
 B) CloudFront access should succeed
   curl -I https://chewbacca-growl.com
   curl -I https://app.chewbacca-growl.com
+  <img width="747" height="430" alt="image" src="https://github.com/user-attachments/assets/eef7826c-318c-4429-b48a-72e66ffe0d2c" />
+  <img width="1448" height="288" alt="image" src="https://github.com/user-attachments/assets/68e76fd8-69c4-484b-b530-c4f50813022b" />
+  <img width="1447" height="235" alt="image" src="https://github.com/user-attachments/assets/c2e9bb82-0980-4cf8-91b5-3ee612ab6eb7" />
+
+
+
 
 Expected: 200/301 → 200
 
@@ -97,19 +103,53 @@ Expected: 200/301 → 200
   --name <project>-cf-waf01 \
   --scope CLOUDFRONT \
   --id <WEB_ACL_ID>
+  <img width="1802" height="608" alt="image" src="https://github.com/user-attachments/assets/d9e1eeac-e100-455e-83c4-04e11dceefb9" />
+
 
 And confirm distribution references it:
   aws cloudfront get-distribution \
   --id <DISTRIBUTION_ID> \
   --query "Distribution.DistributionConfig.WebACLId"
+  <img width="1416" height="310" alt="image" src="https://github.com/user-attachments/assets/bd2d8bfe-5b96-48bf-8110-bbfd58499a05" />
+
 
 Expected: WebACL ARN present.
 
 3) chewbacca-growl.com points to CloudFront
   dig chewbacca-growl.com A +short
   dig app.chewbacca-growl.com A +short
+<img width="1472" height="238" alt="image" src="https://github.com/user-attachments/assets/f16480f2-aaef-4e9e-ad5c-7d25281714c0" />
+<img width="1440" height="232" alt="image" src="https://github.com/user-attachments/assets/368020cd-299d-4060-b942-3a31c46814f3" />
+
+
 
 Expected: resolves to CloudFront (you’ll see CloudFront anycast behavior, not ALB IPs)
+
+So at this point:
+
+DNS is correct
+
+CloudFront is active
+
+ALB is forwarding
+
+EC2 is responding
+
+WAF is ready to attach
+
+Everything is aligned.
+
+If you want, we can now:
+
+verify the WAF is attached
+
+lock the ALB security group to CloudFront IP ranges
+
+enforce the custom origin header
+
+tune caching
+
+or validate the Route 53 record directly
 
 
 
