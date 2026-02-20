@@ -76,8 +76,7 @@ Evidence to collect:
    <img width="1421" height="298" alt="image" src="https://github.com/user-attachments/assets/70177772-7cea-47a3-b381-ac25059d6700" />
    <img width="1433" height="317" alt="image" src="https://github.com/user-attachments/assets/18f0aca6-a690-4c6e-b7fc-e453079017f8" />
    <img width="1487" height="100" alt="image" src="https://github.com/user-attachments/assets/ad3893ad-5dc4-4bd0-8eb5-3944945e453e" />
-   <img width="1487" height="100" alt="image" src="https://github.com/user-attachments/assets/a99332bc-7d17-4163-bc7c-8df218df8ecd" />
-<img width="1487" height="100" alt="image" src="https://github.com/user-attachments/assets/27c9777e-cb1a-41ab-ac39-dc556b505e5c" />
+
 
 Explain:
     Bandwidth saved
