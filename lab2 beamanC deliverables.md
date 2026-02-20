@@ -53,7 +53,7 @@ Students must state:
     It sent a conditional request to the origin using validators.
     The origin returned 304 Not Modified, so CloudFront reused the cached body.”
 
-    A RefreshHit happens when CloudFront already has a cached object, but the cache entry has expired. Instead of immediately fetching the full object again, CloudFront performs a conditional request to the origin using validators like ETag or Last‑Modified.
+ A RefreshHit happens when CloudFront already has a cached object, but the cache entry has expired. Instead of immediately fetching the full object again, CloudFront performs a conditional request to the origin using validators like ETag or Last‑Modified.
 
     CloudFront had a cached copy, but the TTL expired.
 It sent a conditional request to the origin using validators.
@@ -84,10 +84,12 @@ Explain:
     Origin load reduced
     Still correct behavior
 
-    A RefreshHit means CloudFront’s cached object has expired, but instead of downloading the entire file again, CloudFront sends a conditional request to the origin using:
+ A RefreshHit means CloudFront’s cached object has expired, but instead of downloading the entire file again, 
+ CloudFront sends a conditional request to the origin using:
 If-None-Match (ETag)
 If-Modified-Since (Last‑Modified)
 A 304 response contains no body, so CloudFront does not re-download the file.
+
 Why this saves bandwidth?
 CloudFront only transfers a tiny 304 response instead of the full object.
 
@@ -112,7 +114,7 @@ Deliverables:
 12. One-Paragraph Takeaway (You Must Write)
     --> “What does RefreshHit mean, and why is it often better than a Miss?”
 
-    A RefreshHit means CloudFront’s cached copy has expired, so the edge location checks with the origin using conditional headers (ETag or Last‑Modified) to confirm whether the object has changed. If the origin replies “Not Modified,” CloudFront keeps serving the cached body without re‑downloading it. This is often better than a Miss because CloudFront avoids transferring the full file again, dramatically reducing bandwidth and origin load while still guaranteeing the user receives fresh, correct content. In other words, a RefreshHit gives you the accuracy of a revalidation with the efficiency of a cache hit — the best of both worlds.
+   A RefreshHit means CloudFront’s cached copy has expired, so the edge location checks with the origin using conditional headers (ETag or Last‑Modified) to confirm whether the object has changed. If the origin replies “Not Modified,” CloudFront keeps serving the cached body without re‑downloading it. This is often better than a Miss because CloudFront avoids transferring the full file again, dramatically reducing bandwidth and origin load while still guaranteeing the user receives fresh, correct content. In other words, a RefreshHit gives you the accuracy of a revalidation with the efficiency of a cache hit — the best of both worlds.
 If they can answer this cleanly, they’re ahead of most working engineers.
 
 
