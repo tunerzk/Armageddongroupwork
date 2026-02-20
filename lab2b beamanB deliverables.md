@@ -73,7 +73,7 @@ B1) Before invalidation: prove object is cached
 
     curl -i https://chewbacca-growl.com/static/index.html | sed -n '1,30p'
     curl -i https://chewbacca-growl.com/static/index.html | sed -n '1,30p'
-    <img width="1462" height="515" alt="image" src="https://github.com/user-attachments/assets/0bf10fe8-c4cc-4f84-b4d5-f15603e97f93" />
+ <img width="1462" height="515" alt="image" src="https://github.com/user-attachments/assets/0bf10fe8-c4cc-4f84-b4d5-f15603e97f93" />
 
 
 Expected:
@@ -122,17 +122,7 @@ You break the principle of declarative infrastructure (Terraform shouldn’t man
 I chose Option 1 because CloudFront invalidations should remain a manual, controlled operational action rather than something Terraform performs automatically.  
 Invalidations are expensive and should only be used in break‑glass situations. Automating them in Terraform would encourage bad habits, such as relying on invalidation instead of proper asset versioning. Terraform’s job is to manage long‑lived infrastructure, not ephemeral cache‑purge operations.
 
-By keeping invalidations as a manual runbook step, we ensure that:
-
-teams think carefully before invalidating
-
-we avoid unnecessary cost
-
-we preserve Terraform’s declarative model
-
-we encourage correct versioned static asset deployment
-
-This aligns with AWS best practices and the intent of the lab.
+By keeping invalidations as a manual runbook step, we ensure that: teams think carefully before invalidating. we avoid unnecessary cost, and we preserve Terraform’s declarative model. We encourage correct versioned static asset deployment, this aligns with AWS best practices and the intent of the lab.
 
 Option 2 (Advanced/Optional): “Terraform action” invalidation
     HashiCorp provides a CloudFront invalidation action (not a core resource) that creates invalidations and waits.
@@ -179,8 +169,8 @@ Students submit:
     /static/index.html was the intended target, but immutable caching required a wildcard invalidation.)
 
     2) Proof of cache before + after (headers showing Age/x-cache) Documentation: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/standard-logs-reference.html?utm_source=chatgpt.com
-    <img width="1421" height="299" alt="Screenshot 2026-02-15 184335" src="https://github.com/user-attachments/assets/6e1e5cb9-bdf6-4214-8a68-30f6c57c57d0" />
-    <img width="1434" height="318" alt="Screenshot 2026-02-15 184612" src="https://github.com/user-attachments/assets/34cfee74-d415-448b-beac-a19307c8e9ad" />
+ <img width="1421" height="299" alt="Screenshot 2026-02-15 184335" src="https://github.com/user-attachments/assets/6e1e5cb9-bdf6-4214-8a68-30f6c57c57d0" />
+<img width="1434" height="318" alt="Screenshot 2026-02-15 184612" src="https://github.com/user-attachments/assets/34cfee74-d415-448b-beac-a19307c8e9ad" />
 
 
     3) A 1-paragraph policy:
@@ -190,7 +180,7 @@ Students submit:
         
         “Why is /* restricted?”
         
-        We only perform CloudFront invalidations when absolutely necessary, such as when the HTML entrypoint (index.html) becomes stale after deployment. All static assets (CSS, JS, images) must be versioned using hashed filenames so they never require invalidation and can be cached indefinitely. The HTML entrypoint cannot be versioned because browsers always request / or /index.html, so it may occasionally require a targeted invalidation. Wildcard invalidations (/*) are restricted because they are expensive, slow, and purge the entire global cache, which can cause performance degradation and unnecessary cost. Targeted invalidations should always be preferred.
+We only perform CloudFront invalidations when absolutely necessary, such as when the HTML entrypoint (index.html) becomes stale after deployment. All static assets (CSS, JS, images) must be versioned using hashed filenames so they never require invalidation and can be cached indefinitely. The HTML entrypoint cannot be versioned because browsers always request / or /index.html, so it may occasionally require a targeted invalidation. Wildcard invalidations (/*) are restricted because they are expensive, slow, and purge the entire global cache, which can cause performance degradation and unnecessary cost. Targeted invalidations should always be preferred.
 
 
 
