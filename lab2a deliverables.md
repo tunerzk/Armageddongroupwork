@@ -139,17 +139,8 @@ WAF is ready to attach
 
 Everything is aligned.
 
-If you want, we can now:
 
-verify the WAF is attached
 
-lock the ALB security group to CloudFront IP ranges
-
-enforce the custom origin header
-
-tune caching
-
-or validate the Route 53 record directly
 
 
 
