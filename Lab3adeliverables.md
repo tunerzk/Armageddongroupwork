@@ -137,6 +137,8 @@ From São Paulo EC2 (SSM session)
 Test network reachability to Tokyo RDS:
 
     nc -vz <tokyo-rds-endpoint> 3306
+  <img width="1597" height="388" alt="image" src="https://github.com/user-attachments/assets/59adcbab-24b8-4eee-ba36-fd90ea3649fe" />
+
 
 Then app-level verification:
   submit record in São Paulo
@@ -144,6 +146,10 @@ Then app-level verification:
 
 Confirm routes (AWS CLI)
 For each region, verify route tables include the cross-region CIDR to TGW:
+<img width="1515" height="346" alt="image" src="https://github.com/user-attachments/assets/84ad87a3-a62f-4772-ac5c-3ffd6921ae43" />
+<img width="1520" height="373" alt="image" src="https://github.com/user-attachments/assets/ab573184-598c-42d9-b26d-16c6c0f70206" />
+
+
 
     aws ec2 describe-route-tables --filters "Name=vpc-id,Values=<VPC_ID>" --query "RouteTables[].Routes[]"
 
