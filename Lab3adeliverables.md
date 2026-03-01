@@ -152,6 +152,8 @@ For each region, verify route tables include the cross-region CIDR to TGW:
 
 
     aws ec2 describe-route-tables --filters "Name=vpc-id,Values=<VPC_ID>" --query "RouteTables[].Routes[]"
+  <img width="1135" height="636" alt="image" src="https://github.com/user-attachments/assets/5315dc01-8949-45b7-ade2-f5f80422a5bc" />
+
 
 Suggested structure for the student repo
 /tokyo/ = “Lab2 + marginal TGW hub code”
@@ -163,3 +165,6 @@ Suggested structure for the student repo
       tokyo_rds_endpoint
 
 São Paulo consumes those outputs (remote state) to configure routes and SG rules
+<img width="1251" height="425" alt="image" src="https://github.com/user-attachments/assets/d90b960d-0cbe-4937-96ea-0dc165dc817d" />
+
+
