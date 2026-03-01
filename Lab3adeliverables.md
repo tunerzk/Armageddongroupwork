@@ -114,6 +114,9 @@ For this lab:
         Remote state references
         Explicit variables
 
+  <img width="827" height="253" alt="image" src="https://github.com/user-attachments/assets/8acafdbc-daa8-46ea-aa34-369723f81a8f" />
+ 
+
 This is intentional.---> You are learning how real DevOps teams coordinate infrastructure.
 
 Expected Repository Layout
