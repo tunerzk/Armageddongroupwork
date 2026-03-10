@@ -161,5 +161,8 @@ Where “Hit / Miss / RefreshHit” come from (student-facing truth)
         sometimes also x-edge-response-result-type
 
     Values commonly include: Hit, Miss, RefreshHit, plus other states like Error, LimitExceeded, etc.
+  <img width="966" height="192" alt="image" src="https://github.com/user-attachments/assets/5b37299d-41ce-4d95-b882-897e812e922d" />
+  The original terraform cache policy was disabled, so the cloudfront could not give a hit, or refreshHit response. Changed to able the cache policy.
+
 
 That’s why the script reports “Other:*” — so students don’t blindly ignore unusual outcomes.
