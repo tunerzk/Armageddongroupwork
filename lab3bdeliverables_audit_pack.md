@@ -12,8 +12,48 @@ audit-pack/
 ├── 05_network-corridor-proof.txt
 └── evidence.json   (Malgus scripts output)
 
+# Architecture Summary
+
+## Overview
+This system is designed as a multi‑region, APPI‑compliant architecture where all personal data remains strictly inside Japan (Tokyo region). The São Paulo region hosts only stateless application components to provide global performance and resilience without storing or processing regulated data outside Japan.
+
+## Regional Roles
+- **Tokyo (ap-northeast-1)**  
+  - Primary region  
+  - Hosts the RDS database containing all personal data  
+  - Runs an EC2 Auto Scaling Group behind an Application Load Balancer  
+  - Acts as the authoritative data region for all regulated workloads  
+
+- **São Paulo (sa-east-1)**  
+  - Secondary region  
+  - Hosts only stateless EC2 application servers behind an ALB  
+  - No RDS, no personal data, no persistent storage  
+  - Used for latency improvements and failover capacity  
+
+## Networking
+- Each region has its own VPC with public and private subnets.  
+- A **Transit Gateway corridor** connects Tokyo ↔ São Paulo, allowing controlled, auditable cross‑region traffic.  
+- Route tables ensure that only application‑tier traffic flows cross‑region; database traffic never leaves Tokyo.
+
+## Edge & Security
+- **CloudFront** sits in front of both regional ALBs to provide global caching and edge termination.  
+- **AWS WAF** is attached to CloudFront to block malicious traffic before it reaches either region.  
+- **CloudTrail** records all management events for 90 days, ensuring full auditability of configuration changes.  
+- Logs (CloudFront, WAF, etc.) are stored in the S3 bucket `Class_Lab3` under the prefix `Chwebacca-logs/`.
+
+## Application Tier
+- Both regions run identical EC2 Auto Scaling Groups.  
+- Instances bootstrap via user‑data, install Apache, and expose a `/health` endpoint for ALB checks.  
+- São Paulo and Tokyo ALBs each perform health checks and route traffic only to healthy instances.
+
+## Data Residency Guarantee
+- Only Tokyo contains an RDS instance.  
+- São Paulo contains no data stores, ensuring APPI compliance and preventing cross‑border data transfer.
+
+
 Deliverable B — One paragraph “auditor narrative”
 “この設計が APPI 的に安全で、なぜ DB を海外に置けないか”を 8〜12 行で説明。
+
 
 Verification Commands (CLI proof students can paste)
 1) Data residency proof (RDS only in Tokyo)
@@ -22,17 +62,25 @@ Verification Commands (CLI proof students can paste)
 
             aws rds describe-db-instances --region ap-northeast-1 \
           --query "DBInstances[].{DB:DBInstanceIdentifier,AZ:AvailabilityZone,Region:'ap-northeast-1',Endpoint:Endpoint.Address}"
+   <img width="1523" height="448" alt="image" src="https://github.com/user-attachments/assets/2804a224-159a-4256-826f-f52eceec3764" />
+
 
     São Paulo: No RDS
 
             aws rds describe-db-instances --region sa-east-1 \
           --query "DBInstances[].DBInstanceIdentifier"
+   <img width="1460" height="427" alt="image" src="https://github.com/user-attachments/assets/ce61603f-1868-42f5-80ab-74830e0ddafc" />
 
 
-2) Edge proof (CloudFront logs show cache + access)
+
+3) Edge proof (CloudFront logs show cache + access)
     Students capture request headers:
 
         curl -I https://chewbacca-growls.com/api/public-feed
+   <img width="1142" height="256" alt="image" src="https://github.com/user-attachments/assets/3f48f665-5ccc-43b6-a9c8-38aa671f7867" />
+   <img width="1211" height="288" alt="image" src="https://github.com/user-attachments/assets/a4d6a5f2-5ee9-45c1-84c6-5a59515bbba1" />
+
+
 
 And/or submit CloudFront standard log evidence (Hit/Miss/RefreshHit)
 
