@@ -79,34 +79,74 @@ Verification Commands (CLI proof students can paste)
         curl -I https://chewbacca-growls.com/api/public-feed
    <img width="1142" height="256" alt="image" src="https://github.com/user-attachments/assets/3f48f665-5ccc-43b6-a9c8-38aa671f7867" />
    <img width="1211" height="288" alt="image" src="https://github.com/user-attachments/assets/a4d6a5f2-5ee9-45c1-84c6-5a59515bbba1" />
+   <img width="1341" height="208" alt="image" src="https://github.com/user-attachments/assets/61eb3ff6-b78c-4ca5-b2e1-cdfb4b627f4a" />
+
 
 
 
 And/or submit CloudFront standard log evidence (Hit/Miss/RefreshHit)
+<img width="861" height="551" alt="image" src="https://github.com/user-attachments/assets/e103f464-00e2-4443-b7cb-814ea72932b8" />
+
 
 3) WAF proof
 
 Provide:
         WAF log snippet or Insights summary
         WAF logging destination options are documented 
+        <img width="1427" height="275" alt="image" src="https://github.com/user-attachments/assets/0d718096-f81f-4d04-b469-f33a075fa065" />
+        WAF IS BLOCKING ATTACKS SQLI
+        <img width="867" height="577" alt="image" src="https://github.com/user-attachments/assets/63a84966-3f9b-40c7-9060-13ea8a8f59b4" />
+        Summary:
+        🛡️ AWS WAF Security Report
+Protected Asset: CloudFront Distribution E491HUUSS0F8D  
+Domain: armadawgs-growl.click  
+WAF Scope: Global (CloudFront)
+Date Range: Last 24 Hours
+Prepared For: Security Review / Audit
+
+AWS WAF is actively protecting the CloudFront distribution for armadawgs-growl.click.
+During the reporting period, the WAF successfully detected and blocked multiple malicious requests, including SQL injection attempts targeting the /api/public-feed endpoint. All attacks were mitigated at the CloudFront edge, preventing them from reaching the application or ALB.
+
+The WAF is functioning as intended and demonstrates effective protection against common web‑based threats.
+       
+
 
 
 4) Change proof (CloudTrail)
-CloudTrail has event history with a 90-day immutable record of management events 
+CloudTrail has event history with a 90-day immutable record of management events
+AWS CloudTrail automatically records all management‑level API activity across the account, providing a 90‑day immutable history of configuration changes. This includes the exact moment the WAF was associated with the CloudFront distribution.
+
+Below is a representative CloudTrail event showing the UpdateDistribution API call that attached the WAF to CloudFront.
 
 Students capture:
         --> “who changed SG / TGW route / WAF / CloudFront config”
+        Change made: Regional scope in WAF, into a Cloudfront scope
+        <img width="1147" height="440" alt="image" src="https://github.com/user-attachments/assets/d6565a76-c4c3-48b7-87ed-47e2c7a85e88" />
+        <img width="1300" height="337" alt="image" src="https://github.com/user-attachments/assets/f9218b3b-7699-4487-8738-f6347271b565" />
+        cloudfront logs where set to disabled, needed to enable to send logs to s3 buckets
+        <img width="1051" height="230" alt="image" src="https://github.com/user-attachments/assets/524182f1-b35c-4363-87e0-061462357240" />
+
+
+
 
 5) Network corridor proof (TGW)
 Students prove:
         TGW attachments exist in both regions
         routes point cross-region CIDRs to TGW
+   <img width="1001" height="332" alt="image" src="https://github.com/user-attachments/assets/6d0996c1-910d-44d5-a275-8de51d905595" />
+   <img width="1008" height="347" alt="image" src="https://github.com/user-attachments/assets/b0b4aa32-d425-4aa3-893b-3ceb3c4c6b7a" />
 
-6) AWS CLI verification (students can prove the bucket/logs exist)
+
+
+7) AWS CLI verification (students can prove the bucket/logs exist)
 
         aws s3 ls s3://Class_Lab3/
         # If logs are under a folder/prefix:
         aws s3 ls s3://Class_Lab3/cloudfront-logs/ --recursive | tail -n 20
+   <img width="1052" height="272" alt="image" src="https://github.com/user-attachments/assets/43078e08-171e-49e4-bea3-3cae3756e718" />
+   <img width="1027" height="551" alt="image" src="https://github.com/user-attachments/assets/25ae8061-1333-47fe-8cd0-686ed5d4d6c0" />
+
+
 
 Download one file manually (sanity check):
 
