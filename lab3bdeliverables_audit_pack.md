@@ -145,12 +145,18 @@ Students prove:
         aws s3 ls s3://Class_Lab3/cloudfront-logs/ --recursive | tail -n 20
    <img width="1052" height="272" alt="image" src="https://github.com/user-attachments/assets/43078e08-171e-49e4-bea3-3cae3756e718" />
    <img width="1027" height="551" alt="image" src="https://github.com/user-attachments/assets/25ae8061-1333-47fe-8cd0-686ed5d4d6c0" />
+   <img width="1671" height="245" alt="image" src="https://github.com/user-attachments/assets/d56f16df-0b17-4ea1-a393-a05b8d4b5f67" />
+
 
 
 
 Download one file manually (sanity check):
 
     aws s3 cp s3://Class_Lab3/cloudfront-logs/<somefile>.gz .
+  <img width="1447" height="158" alt="image" src="https://github.com/user-attachments/assets/820db7f4-65ea-409a-baf9-6b46abff2846" />
+  <img width="1866" height="658" alt="image" src="https://github.com/user-attachments/assets/c4ac7dc1-363f-4ce6-aea4-b0f3b91b16eb" />
+
+
 
 Script 1 — malgus_residency_proof.py
 Creates a “DB only in Tokyo” proof file.
