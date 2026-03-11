@@ -160,13 +160,29 @@ Download one file manually (sanity check):
 
 Script 1 — malgus_residency_proof.py
 Creates a “DB only in Tokyo” proof file.
+<img width="1337" height="482" alt="Screenshot 2026-03-11 012859" src="https://github.com/user-attachments/assets/59697407-e063-4999-9d5e-e38b90f58633" />
+
 
 Script 2 — malgus_tgw_corridor_proof.py
 Shows TGW attachments + routes that form the “legal corridor”.
+<img width="1197" height="501" alt="image" src="https://github.com/user-attachments/assets/e0a605e3-0886-45ac-9403-e565379bc0ee" />
+
 
 Script 3 — malgus_cloudtrail_last_changes.py
 Pulls recent CloudTrail events for “who changed what”.
         --> Event history is available by default; it provides a 90-day record of management events.
+        <img width="1211" height="451" alt="image" src="https://github.com/user-attachments/assets/3d6447f8-d5af-4cef-aa4a-a61a8e66e7ff" />
+        <img width="1217" height="455" alt="image" src="https://github.com/user-attachments/assets/54d40429-7564-4fd2-8039-4fe9d4524165" />
+        <img width="1207" height="442" alt="image" src="https://github.com/user-attachments/assets/4259b3c6-0002-46de-af0f-43eb9e78291c" />
+        <img width="1211" height="486" alt="image" src="https://github.com/user-attachments/assets/b7076c1b-9e30-4347-9f4f-03be9502a32a" />
+        <img width="1206" height="517" alt="image" src="https://github.com/user-attachments/assets/47a7e8bf-a990-41c0-88a4-30027aed65ca" />
+        <img width="1198" height="482" alt="image" src="https://github.com/user-attachments/assets/30e8902e-5ad2-4963-a659-c7981fa827ba" />
+
+
+
+
+
+
 
 Script 4 — malgus_waf_summary.py
 Summarizes WAF logs (Allow vs Block) from CloudWatch Logs destination.
@@ -174,6 +190,8 @@ WAF logging destinations: CloudWatch Logs, S3, Firehose.
 
 Script 5 — malgus_cloudfront_log_explainer.py (optional)
 If you ingest CloudFront standard logs into S3, this script reads a log file and counts Hit/Miss/RefreshHit.
+<img width="1190" height="486" alt="image" src="https://github.com/user-attachments/assets/3348ff28-cb6d-4621-b59d-eee21aed95ea" />
+
 
 CloudFront standard logs reference Hit / RefreshHit semantics. 
 A) Standard logs in S3 (downloaded locally)
@@ -184,6 +202,8 @@ A) Standard logs in S3 (downloaded locally)
 B) Real-time logs as JSON lines
 
         python3 malgus_cloudfront_log_explainer.py --mode realtime realtime_logs.jsonl
+  <img width="261" height="232" alt="image" src="https://github.com/user-attachments/assets/33cb6cef-04ea-4426-b77e-7f8448430762" />
+
 
 Final Lab Assumptions (Locked)
     S3 Bucket: Class_Lab3
@@ -193,8 +213,14 @@ Final Lab Assumptions (Locked)
 Running Scripts:
 
         python3 malgus_cloudfront_log_explainer.py --latest 5
+  <img width="1217" height="500" alt="image" src="https://github.com/user-attachments/assets/cc63e4d2-8cbd-4468-8289-d95882eb4e3c" />
+
         python3 malgus_cloudfront_log_explainer.py --prefix cloudfront-logs/ --latest 10
+  <img width="1237" height="542" alt="image" src="https://github.com/user-attachments/assets/509eb7d9-be12-48d5-8d45-537958063c87" />
+
         python3 malgus_cloudfront_log_explainer.py --prefix cloudfront-logs/ --latest 5 --keep
+  <img width="1192" height="516" alt="image" src="https://github.com/user-attachments/assets/addb627a-3f2b-406d-bc1e-9b868360ae8a" />
+
 
 
 From stdin (nice for pipelines)
